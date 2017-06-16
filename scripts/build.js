@@ -1,7 +1,7 @@
 const webpack = require("webpack"),
     chalk = require("chalk"),
     fs = require("fs-extra"),
-    baseConfig = require("../config/webpack.config.prod"),
+    configBuilder = require("../config/configBuilder"),
     constants = require("../config/constant");
 
 chalk.blue("Building deployment assets");
@@ -11,7 +11,7 @@ process.env.NODE_ENV = "production";
 fs.emptyDirSync(constants.BUILD_DIR);
 
 // Use react-dev-utils custom compiler which will give less verbose output for development
-let compiler = webpack(baseConfig);
+let compiler = webpack(configBuilder.getProductionConfig());
 compiler.run((error, stats) => {
     if (error) {
         console.error(chalk.red("Deployment build failed!", error));

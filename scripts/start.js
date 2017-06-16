@@ -1,7 +1,7 @@
 const webpack = require("webpack"),
     webpackDevServer = require("webpack-dev-server"),
     chalk = require("chalk"),
-    baseConfig = require("../config/webpack.config.dev"),
+    configBuilder = require("../config/configBuilder"),
     constants = require("../config/constant");
 
 const {
@@ -18,7 +18,7 @@ const appName = constants.PACKAGE_JSON.name;
 const urls = prepareUrls(protocol, constants.DEVELOPMENT_HOST, constants.DEVELOPMENT_PORT);
 
 // Use react-dev-utils custom compiler which will give less verbose output for development
-let compiler = createCompiler(webpack, baseConfig, appName, urls, true);
+let compiler = createCompiler(webpack, configBuilder.getDevelopmentConfig(), appName, urls, true);
 let server = new webpackDevServer(compiler, constants.DEVELOPMENT_SERVER_CONFIG);
 server.listen(constants.DEVELOPMENT_PORT, constants.DEVELOPMENT_HOST, function (err) {
     if (err) {
