@@ -1,10 +1,11 @@
 const devConfig = require("../config/webpack.config.dev"),
-      prodConfig = require("../config/webpack.config.prod");
+      prodConfig = require("../config/webpack.config.prod"),
+      configParser = require("./configParser");
 
 
 module.exports = {
     getDevelopmentConfig : function() {
-        return devConfig;
+        configParser(devConfig, false);
     },
     getProductionConfig : function() {
         return prodConfig;

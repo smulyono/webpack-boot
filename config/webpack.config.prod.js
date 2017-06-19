@@ -46,39 +46,39 @@ module.exports = {
             },
             // less +
             // css autoprefixer
-            {
-                test: /\.less$/,
-                use: ExtractTextPlugin.extract({
-                    fallback : require.resolve('style-loader'),
-                    use : [
-                        {
-                            loader: require.resolve('css-loader'),
-                            options: {
-                                importLoaders: 1,
-                            }
-                        },
-                        {
-                            loader: require.resolve('postcss-loader'),
-                            options: {
-                                plugins: () => [
-                                    require('postcss-flexbugs-fixes'),
-                                    require('autoprefixer')({
-                                        browsers: [
-                                            '>1%',
-                                            'last 4 versions',
-                                            'Firefox ESR',
-                                            'not ie < 9', // React doesn't support IE8 anyway
-                                        ],
-                                        flexbox: 'no-2009',
-                                    })
-                                ],
-                            },
-                        },
-                        require.resolve('less-loader')
-                    ]
-                }),
-                include: constant.PROJECT_DIR
-            },
+            // {
+            //     test: /\.less$/,
+            //     use: ExtractTextPlugin.extract({
+            //         fallback : require.resolve('style-loader'),
+            //         use : [
+            //             {
+            //                 loader: require.resolve('css-loader'),
+            //                 options: {
+            //                     importLoaders: 1,
+            //                 }
+            //             },
+            //             {
+            //                 loader: require.resolve('postcss-loader'),
+            //                 options: {
+            //                     plugins: () => [
+            //                         require('postcss-flexbugs-fixes'),
+            //                         require('autoprefixer')({
+            //                             browsers: [
+            //                                 '>1%',
+            //                                 'last 4 versions',
+            //                                 'Firefox ESR',
+            //                                 'not ie < 9', // React doesn't support IE8 anyway
+            //                             ],
+            //                             flexbox: 'no-2009',
+            //                         })
+            //                     ],
+            //                 },
+            //             },
+            //             require.resolve('less-loader')
+            //         ]
+            //     }),
+            //     include: constant.PROJECT_DIR
+            // },
             // babel + react
             {
                 test: /\.(js|jsx)$/,

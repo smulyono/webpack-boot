@@ -43,7 +43,7 @@ module.exports = {
             // less +
             // css autoprefixer
             {
-                test: /\.less$/,
+                test: /\.css$/,
                 use: [
                     require.resolve('style-loader'),
                     {
@@ -68,8 +68,7 @@ module.exports = {
                                 })
                             ],
                         },
-                    },
-                    require.resolve('less-loader')
+                    }
                 ],
                 include: constant.PROJECT_DIR
             },

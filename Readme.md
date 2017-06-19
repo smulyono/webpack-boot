@@ -7,3 +7,14 @@ The key goal for webpack boot is to automate the configuration of webpack based 
 ## How to get started 
 
 ## What is supported ?
+
+## Development with linkage
+* Checkout the webpack-boot code from repository
+* Run command `$ yarn link`
+
+`__[On the other project, to test webpack-boot]__`
+
+* Add loader to test as dependencies
+* Run `$ yarn install` to install deps
+* Run `$ yarn start`
+

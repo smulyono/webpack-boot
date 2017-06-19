@@ -6,6 +6,7 @@ var rootPath = fs.realpathSync(process.cwd());
 function resolvePath(relativePath) {
     return path.resolve(rootPath, relativePath);
 }
+
 module.exports = {
     PROJECT_DIR : resolvePath("src/"),
     BUILD_DIR   : resolvePath("build/"),
