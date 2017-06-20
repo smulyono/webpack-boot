@@ -5,9 +5,9 @@ const devConfig = require("../config/webpack.config.dev"),
 
 module.exports = {
     getDevelopmentConfig : function() {
-        configParser(devConfig, false);
+        return configParser(devConfig, false);
     },
     getProductionConfig : function() {
-        return prodConfig;
+        return configParser(prodConfig, true);
     }
 }

@@ -1,12 +1,15 @@
-const moduleDetector = require("../../../moduleDetector"),
-    configuration = require("./webpack.config.js"),
-    chalk = require("chalk");
+const wmerge = require("webpack-merge");  
     
-module.exports = function(srcConfiguraton, isProduction) {
-    if (moduleDetector.detect("LESS",
-                 "less-loader", "less")) {
-        // get the configuration    
-
-    }
-    
+module.exports = function(isProduction) {
+    return {
+        "name" : "LESS",
+        "modules" : ["less", "less-loader"],
+        "config" : function(srcConfiguration) {
+            const configuration = require("./webpack.config.dev.js"),
+                prodConfiguration = require("./webpack.config.prod.js");
+            return (isProduction ?
+                wmerge(srcConfiguration, prodConfiguration) :
+                wmerge(srcConfiguration, configuration) );
+        }
+    };
 }
