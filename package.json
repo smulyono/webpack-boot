@@ -1,7 +1,11 @@
 {
     "name": "webpack-boot",
-    "version": "0.0.7",
+    "version": "0.0.8",
     "description": "Build simple application using webpack",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/smulyono/webpack-boot"
+    },
     "author": "smulyono@me.com",
     "license": "MIT",
     "scripts": {
