@@ -20,6 +20,7 @@
         "css-loader": "^0.28.3",
         "eslint": "^3.19.0",
         "eslint-config-react-app": "^1.0.4",
+        "eslint-config-recommended": "^1.5.0",
         "eslint-loader": "^1.7.1",
         "eslint-plugin-flowtype": "^2.33.0",
         "eslint-plugin-import": "^2.3.0",

@@ -1,12 +1,19 @@
 # Webpack Boot 
 
-Simple webpack build generator which is inspired and derived some of the utility from `react-scripts`. 
+Simple webpack build generator which is inspired and __derived__ some of the utility from `react-scripts`. 
 
-The key goal for webpack boot is to automate the configuration of webpack based on the module `needs` (automatically derived the module `needs` from their dependencies), without worry-ing what kind of configuration needs to go in to the webpack configuration. Similar as `react-scripts` which is to shift the focus on the code / application rather than the dev tools configuration needed. 
+The key goal for webpack boot is to automate the configuration of webpack based on the module `needs` (automatically derived from their dependencies). Similar as `react-scripts` which is to shift the focus on the code / application rather than the dev tools configuration needed. 
 
 ## How to get started 
+[ In Progress ]
 
 ## What is supported ?
+* Webpack 2.x support configuration
+    * Development server with webpack as `react-scripts` have supported
+* Less support
+* ESLint for React and ES6
+
+[ More .. ]
 
 ## Development with linkage
 * Checkout the webpack-boot code from repository

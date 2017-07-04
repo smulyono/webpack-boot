@@ -74,12 +74,14 @@ module.exports = {
         }
         return isLoaded;
     },
-    parseAndDetect : function(json, defaultConfiguration) {
+    parseAndDetect : function(json, defaultConfiguration, failCallback) {
         if (json && json.hasOwnProperty("name") && 
             json.hasOwnProperty("modules") && 
             json.hasOwnProperty("config")) {
             if (this.detect(json.name, json.modules)) {
                 defaultConfiguration = json.config(defaultConfiguration);
+            } else if (undefined !== failCallback) {
+                failCallback();
             }
         } else {
             // not a valid module for webpack-boot, continue....

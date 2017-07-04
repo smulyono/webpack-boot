@@ -24,22 +24,6 @@ module.exports = {
     module: {
         strictExportPresence: true,
         rules: [
-            // eslint 
-            {
-                test: /\.(js|jsx)$/,
-                enforce: 'pre',
-                use: [
-                    {
-                        loader: require.resolve('eslint-loader'),
-                        options: {
-                            failOnError: true,
-                            baseConfig : require.resolve('eslint-config-react-app'),
-                            useEslintrc : true
-                        },
-                    },
-                ],
-                include: constant.PROJECT_DIR
-            },
             // css autoprefixer
             {
                 test: /\.css$/,
