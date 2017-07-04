@@ -11,7 +11,7 @@ module.exports = {
                         loader: require.resolve('eslint-loader'),
                         options: {
                             failOnError: true,
-                            baseConfig : require.resolve('eslint-config-recommended/esnext'),
+                            baseConfig : require.resolve('eslint-config-google'),
                             useEslintrc : true
                         },
                     },

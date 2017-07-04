@@ -13,7 +13,7 @@ module.exports = {
         constant.MAIN_ENTRY
     ],
     resolve: {
-        modules: [constant.PROJECT_DIR, constant.NODE_MODULES, "node_modules"],
+        modules: [constant.PROJECT_DIR, "node_modules"],
         extensions: ['.js', '.json', '.jsx']
     },
     devtool : 'inline-source-map',

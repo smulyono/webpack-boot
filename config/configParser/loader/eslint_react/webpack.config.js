@@ -1,4 +1,5 @@
-let constant = require("../../../constant");
+let constant = require("../../../constant"),
+    moduleDetector = require("../../../moduleDetector");
 
 module.exports = {
     module : {
