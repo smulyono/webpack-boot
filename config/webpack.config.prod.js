@@ -92,11 +92,10 @@ module.exports = {
     },
     plugins: [
         new HtmlWebpackPlugin({
-            title: "Webpack Build",
-            description: "Simple Application using webpack",
-            author: "smulyono",
+            title: "Webpack Boot",
+            author: "webpack-boot",
             filename: "index.html",
-            template: constant.PROJECT_DIR + "/assets/pages/base.html",
+            template: constant.PROJECT_DIR + "/assets/pages/index.html",
             minify: {
                 collapseWhitespace: true,
                 removeComments: true
