@@ -6,7 +6,7 @@ const chalk = require("chalk"),
 function _resolveModule(moduleName) {
     let module;
     try {
-        module = require(moduleName);    
+        module = require.resolve(moduleName);    
     } catch (e) {}
 
     if (!module) {
