@@ -31,7 +31,7 @@ module.exports = {
                             ],
                         },
                     },
-                    moduleDetector.resolveModule("less-loader")
+                    moduleDetector.resolveModule("less-loader")                    
                 ],
                 include: constant.PROJECT_DIR
             }            
