@@ -10,5 +10,8 @@
     "license": "MIT",
     "devDependencies": {
         "lerna": "^2.0.0"
+    },
+    "scripts": {
+        "publish" : "./node_modules/.bin/lerna publish --independent"
     }
 }
