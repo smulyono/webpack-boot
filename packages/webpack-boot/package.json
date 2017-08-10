@@ -13,6 +13,7 @@
         "build": "node scripts/build.js"
     },
     "dependencies": {
+        "address": "^1.0.2",
         "autoprefixer": "^7.1.1",
         "babel-core": "^6.24.1",
         "babel-eslint": "^7.2.3",
@@ -36,7 +37,6 @@
         "html-webpack-plugin": "^2.28.0",
         "postcss-flexbugs-fixes": "^3.0.0",
         "postcss-loader": "^2.0.5",
-        "react-dev-utils": "^3.0.0",
         "style-loader": "^0.18.1",
         "url-loader": "^0.5.8",
         "webpack": "^2.6.1",
