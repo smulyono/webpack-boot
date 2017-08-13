@@ -23,6 +23,9 @@ const getFormattedTime = (msTime) => {
 
 
 module.exports = {
+    clearConsole : () => {
+        process.stdout.write('\x1Bc');
+    },
     printFormattedTime: (msTime) => {
         // return the ms Time to nice formatted 00 hours 00 minutes 00 seconds 00 mili
         return getFormattedTime(msTime);

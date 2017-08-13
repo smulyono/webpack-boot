@@ -5,12 +5,11 @@ const
     util = require("../config/util"),
     constants = require("../config/constant");
 
-console.log(chalk.blue("Webpack boot development server... [ x ]"));
+console.log(chalk.cyan(`Webpack boot development server... [ v${constants.PACKAGE_JSON.version} ]`));
 // set node_env as development
 process.env.NODE_ENV = "development";
 
 const protocol = process.env.HTTPS === 'true' ? 'https' : 'http';
-const appName = constants.PACKAGE_JSON.name;
 const urls = util.getAddress(protocol, constants.DEVELOPMENT_HOST, constants.DEVELOPMENT_PORT);
 
 // configBuilder.getDevelopmentConfig();

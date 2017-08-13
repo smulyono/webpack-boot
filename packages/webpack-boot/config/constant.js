@@ -12,7 +12,8 @@ module.exports = {
     BUILD_DIR   : resolvePath("build/"),
     NODE_MODULES : resolvePath("node_modules/"),
     MAIN_ENTRY   : resolvePath("src/index.js"),
-    PACKAGE_JSON : resolvePath("package.json"),
+    PACKAGE_JSON : require("../package.json"),
+    DEVELOPMENT_PROTOCOL : "http", // default for now
     DEVELOPMENT_HOST : '0.0.0.0',
     DEVELOPMENT_PORT : 3000,
     DEVELOPMENT_SERVER_CONFIG : {
