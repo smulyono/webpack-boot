@@ -5,7 +5,7 @@ const
     util = require("../config/util"),
     constants = require("../config/constant");
 
-console.log(chalk.cyan(`Webpack boot development server... [ v${constants.PACKAGE_JSON.version} ]`));
+console.log(chalk.bold(chalk.cyan(`Webpack boot development server... [ v${constants.PACKAGE_JSON.version} ]`)));
 // set node_env as development
 process.env.NODE_ENV = "development";
 
