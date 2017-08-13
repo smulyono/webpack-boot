@@ -9,7 +9,7 @@ module.exports = {
         filename: "assets/js/[name]-bundle.js"
     },
     entry: [
-        require.resolve('react-dev-utils/webpackHotDevClient'),        
+        require.resolve('./devserver/webpackHotClient'),
         constant.MAIN_ENTRY
     ],
     resolve: {

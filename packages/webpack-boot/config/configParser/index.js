@@ -15,10 +15,10 @@ module.exports = function(configuration, isProduction) {
     configuration = moduleDetector.parseAndDetect(eslintReactLoader(isProduction), configuration, (status) => {
         if (status) {
             // React is loaded
-            console.log("    " + chalk.blue("React detected, `react-app` eslint config is enabled by default"));
+            console.log("    " + chalk.cyan("React detected, `react-app` eslint config is enabled by default"));
         } else {
             configuration = moduleDetector.parseAndDetect(eslintStandard(isProduction), configuration);        
-            console.log("    " + chalk.blue("`google` eslint config is enabled by default"));
+            console.log("    " + chalk.cyan("`google` eslint config is enabled by default"));
         }
     });
 
