@@ -49,6 +49,7 @@ module.exports = yeoman.Base.extend({
             this.templatePath('babelrc'),
             this.destinationPath('.babelrc')
         );
+        // default landing page
         this.fs.copyTpl(
             this.templatePath('_index.html'),
             this.destinationPath('src/assets/pages/index.html'),
@@ -56,13 +57,20 @@ module.exports = yeoman.Base.extend({
                 name: this.props.name
             }
         );
+        // default stylesheet
+        this.fs.copyTpl(
+            this.templatePath('_index.css'),
+            this.destinationPath('src/assets/styles/index.css'),
+            {}
+        );
+        // Default application page
         this.fs.copyTpl(
             this.templatePath('_index.js'),
             this.destinationPath('src/index.js'),
             {
                 name: this.props.name
             }
-        );        
+        );
     },
     install: function () {
         this.log("Run " + chalk.yellow("yarn install") + " to install required dependencies");

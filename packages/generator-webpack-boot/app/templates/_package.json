@@ -9,6 +9,6 @@
 
   },
   "devDependencies" : {
-    "webpack-boot": "^0.0.10"
+    "webpack-boot": "~0.0.12"
   }
 }
