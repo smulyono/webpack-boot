@@ -1,25 +1,52 @@
 import Express from 'express';
-import dotenv from 'dotenv';
 import chalk from 'chalk';
 import log from './logger';
+import path from 'path';
+import webpackDevMiddleWare from 'webpack-dev-middleware';
+import morgan from 'morgan';
+import config from './config';
 
 const App = new Express();
-// pick up environment 
-dotenv.config({
-    path : "./server/application.properties"
-});
+
+let fs = require("fs");
+if (!fs.existsSync(config.logDir)) {
+    // create log directory
+    log.info("creating ", config.logDir);
+    fs.mkdirSync(config.logDir);
+}
+let fileLogStream = fs.createWriteStream(config.accessLogPath,
+             {flags : "a"}
+            );
+
+if (config.mode === config.constants.DEVELOPMENT_MODE) {
+    log.debug("Development :: webpack-middleware");
+    // start webpack boot for client side (static resources)
+    // as middleware
+    let wb = require("webpack-boot");
+    let compiler = wb.webpack(wb.configBuilder.getDevelopmentConfig());
+    App.use(webpackDevMiddleWare(compiler, {
+        noInfo : true,
+        publicPath : config.clientPublicPath
+    }))
+    App.use(morgan("dev"));
+}
+// log access 
+App.use(morgan("combined", {
+    stream : fileLogStream
+}));
+
+App.use(Express.static(config.clientBuildDir));
 
 // Endpoint
 // App.use("/api")
 
-App.set("port", process.env.studio_port || 3000);
 
-App.listen(App.get("port"), (err) => {
+App.listen(config.port, (err) => {
     if (err) {
         log.error(chalk.red("Not able to startup server due to "));
         console.error(chalk.red("Not able to startup server due to "), err);
     }
-    log.info("[Server API] Studio starting on port ", App.get("port"));
+    log.info("[Server API] Studio starting on port ", config.port);
 });
 
 ['SIGINT', 'SIGTERM'].forEach(function(sig) {

@@ -50,5 +50,6 @@
     "eslintConfig": {
         "extends": "react-app"
     },
-    "bin": "./bin/wpboot.js"
+    "bin": "./bin/wpboot.js",
+    "main": "./scripts/module.js"
 }
