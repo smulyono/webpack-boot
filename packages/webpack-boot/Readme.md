@@ -12,7 +12,13 @@ The key goal for webpack boot is to automate the configuration of webpack based 
     * Development server with webpack as `react-scripts` have supported
 * Less support
 * ESLint for React and ES6
+* Environment specific configuration, will look for __.boot.env__ file
+```
+boot_project_dir=<Project location relative to root folder>
+boot_build_dir=<Build folder location>
+boot_main_entry=<Path to main entry js file>
 
+```
 [ More .. ]
 
 ## Development with linkage
@@ -22,6 +28,6 @@ The key goal for webpack boot is to automate the configuration of webpack based 
 `__[On the other project, to test webpack-boot]__`
 
 * Add loader to test as dependencies
-* Run `$ yarn install` to install deps
+* Run `$ yarn link webpack-boot` to install deps
 * Run `$ yarn start`
 

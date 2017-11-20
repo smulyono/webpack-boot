@@ -1,6 +1,6 @@
 {
     "name": "webpack-boot",
-    "version": "0.0.12",
+    "version": "0.0.13-SNAPSHOT",
     "description": "Build simple application using webpack",
     "repository": {
         "type": "git",
@@ -23,6 +23,7 @@
         "chalk": "^1.1.3",
         "cross-spawn": "^5.1.0",
         "css-loader": "^0.28.3",
+        "dotenv": "^4.0.0",
         "eslint": "^3.19.0",
         "eslint-config-google": "^0.8.0",
         "eslint-config-react-app": "1.0.5",

@@ -7,11 +7,17 @@ function resolvePath(relativePath) {
     return path.resolve(rootPath, relativePath);
 }
 
+// picking up environment properties
+require("dotenv").config({
+    path : resolvePath(".boot.env")
+});
+
+
 module.exports = {
-    PROJECT_DIR : resolvePath("src/"),
-    BUILD_DIR   : resolvePath("build/"),
+    PROJECT_DIR : resolvePath(process.env.boot_project_dir || "src/"),
+    BUILD_DIR   : resolvePath(process.env.boot_build_dir || "build/"),
+    MAIN_ENTRY   : resolvePath(process.env.boot_main_entry || "src/index.js"),
     NODE_MODULES : resolvePath("node_modules/"),
-    MAIN_ENTRY   : resolvePath("src/index.js"),
     PACKAGE_JSON : require("../package.json"),
     DEVELOPMENT_PROTOCOL : "http", // default for now
     DEVELOPMENT_HOST : '0.0.0.0',
