@@ -5,6 +5,7 @@ import path from 'path';
 import webpackDevMiddleWare from 'webpack-dev-middleware';
 import morgan from 'morgan';
 import config from './config';
+import ApiRoutes from './routing/apiRoutes';
 
 const App = new Express();
 
@@ -23,10 +24,17 @@ if (config.mode === config.constants.DEVELOPMENT_MODE) {
     // start webpack boot for client side (static resources)
     // as middleware
     let wb = require("webpack-boot");
-    let compiler = wb.webpack(wb.configBuilder.getDevelopmentConfig());
+    let compiler = wb.util.compileWebpack(wb.configBuilder.getDevelopmentConfig());
+    
     App.use(webpackDevMiddleWare(compiler, {
         noInfo : true,
-        publicPath : config.clientPublicPath
+        publicPath : config.clientPublicPath,
+        stats : {
+            assets : false,
+            children : false,
+            chunks : false,
+            chunkModules : false
+        }
     }))
     App.use(morgan("dev"));
 }
@@ -38,7 +46,7 @@ App.use(morgan("combined", {
 App.use(Express.static(config.clientBuildDir));
 
 // Endpoint
-// App.use("/api")
+App.use("/api", ApiRoutes);
 
 
 App.listen(config.port, (err) => {
