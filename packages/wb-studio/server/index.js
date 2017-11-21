@@ -44,7 +44,7 @@ App.use(morgan("combined", {
 }));
 
 App.use(Express.static(config.clientBuildDir));
-
+App.use(Express.json());
 // Endpoint
 App.use("/api", ApiRoutes);
 

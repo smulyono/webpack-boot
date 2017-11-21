@@ -4,7 +4,7 @@ import dotenv from 'dotenv';
 
 // pick up environment 
 dotenv.config({
-    path : "./server/application.properties"
+    path : path.resolve(__dirname, "../application.properties")
 });
 
 
@@ -12,6 +12,7 @@ module.exports = {
     constants,
     port : process.env.studio_port || 3000,
     mode : process.env.studio_mode || constants.PRODUCTION_MODE,
+    workingdir : process.env.studio_workingdir || "/tmp",
 
     clientPublicPath : "/",
     clientBuildDir : path.resolve(__dirname, '../../build'),

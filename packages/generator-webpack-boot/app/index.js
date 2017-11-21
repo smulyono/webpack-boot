@@ -2,18 +2,36 @@
 var yeoman = require('yeoman-generator');
 var chalk = require('chalk');
 var yosay = require('yosay');
+var path = require("path");
 
 module.exports = yeoman.Base.extend({
     initializing: function () {
-        this.pkg = require('../package.json');
+        // check for arguments, this is shorthand for
+        // creating project on certain root directory
+        this.argument("name", {
+            type : String,
+            required : false,
+            desc : "project full directory path"
+        });
+
     },
 
     prompting: function () {
-        var done = this.async();
+        if (this.name) {
+            this.props = {};
+            var dirname = path.dirname(this.name);
+            var basename = path.basename(this.name);
+            this.props.name = basename;
+            this.destinationRoot(this.name);
+            return ;
+        }
 
+        var done = this.async();
         // Have Yeoman greet the user.
         this.log(yosay(
-            'Welcome to the excellent ' + chalk.red('WebpackBoot') + ' generator!'
+            'Welcome to the excellent '
+            + chalk.red('WebpackBoot')
+            + ' generator!'
         ));
 
         var prompts = [{
