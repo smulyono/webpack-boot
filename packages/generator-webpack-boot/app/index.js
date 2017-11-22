@@ -1,11 +1,12 @@
 'use strict';
-var yeoman = require('yeoman-generator');
+var Generator = require('yeoman-generator');
 var chalk = require('chalk');
 var yosay = require('yosay');
 var path = require("path");
 
-module.exports = yeoman.Base.extend({
-    initializing: function () {
+module.exports = class extends Generator {
+    constructor(args, options) {
+        super(args, options);
         // check for arguments, this is shorthand for
         // creating project on certain root directory
         this.argument("name", {
@@ -13,20 +14,18 @@ module.exports = yeoman.Base.extend({
             required : false,
             desc : "project full directory path"
         });
+    }
 
-    },
-
-    prompting: function () {
-        if (this.name) {
+    prompting() {
+        if (this.options.name) {
             this.props = {};
-            var dirname = path.dirname(this.name);
-            var basename = path.basename(this.name);
+            var dirname = path.dirname(this.options.name);
+            var basename = path.basename(this.options.name);
             this.props.name = basename;
-            this.destinationRoot(this.name);
+            this.destinationRoot(this.options.name);
             return ;
         }
 
-        var done = this.async();
         // Have Yeoman greet the user.
         this.log(yosay(
             'Welcome to the excellent '
@@ -40,15 +39,15 @@ module.exports = yeoman.Base.extend({
             message: 'Project name : '
         }];
 
-        this.prompt(prompts, function (props) {
-            this.props = props;
-            // To access props later use this.props.someOption;
-            this.destinationRoot(this.props.name);
-            done();
-        }.bind(this));
-    },
+        return this.prompt(prompts)
+            .then((props) => {
+                this.props = props;
+                // To access props later use this.props.someOption;
+                this.destinationRoot(this.props.name);
+        });
+    }
 
-    copyAppStructures: function () {
+    copyAppStructures() {
         this.fs.copyTpl(
             this.templatePath('_package.json'),
             this.destinationPath('package.json'),
@@ -56,9 +55,9 @@ module.exports = yeoman.Base.extend({
                 name: this.props.name
             }
         );
-    },
+    }
 
-    copyProjectfiles: function () {
+    copyProjectfiles() {
         this.fs.copy(
             this.templatePath('editorconfig'),
             this.destinationPath('.editorconfig')
@@ -89,9 +88,10 @@ module.exports = yeoman.Base.extend({
                 name: this.props.name
             }
         );
-    },
-    install: function () {
+    }
+
+    install() {
         this.log("Run " + chalk.yellow("yarn install") + " to install required dependencies");
         this.log("Run " + chalk.yellow("yarn start") + " to start development server");
     }
-});
+}
