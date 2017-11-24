@@ -1,13 +1,13 @@
 import { Router } from 'express';
-import ApiController from '../controller/apiController';
+import projectController from '../controller/ProjectController';
 // create api route
 const router = new Router();
 
 router.route("/apps")
-    .get(ApiController.handleList);
+    .get(projectController.handleList);
     
 router.route("/app")
-    .post(ApiController.handleCreate);
+    .post(projectController.handleCreate);
 
 
 export default router;

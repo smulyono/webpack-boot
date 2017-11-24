@@ -1,7 +1,7 @@
 import log from '../logger';
 import ResponseBody from '../models/responseBody';
 
-class ApiController {
+class ProjectController {
     handleCreate(req, res, next) {
         let body = req.body;
         log.info("Request for create message ", body);
@@ -21,6 +21,6 @@ class ApiController {
     }
 }
 
-const apiControllerInstance = new ApiController();
+const projectControllerInstance = new ProjectController();
 
-export default apiControllerInstance;
+export default projectControllerInstance;

@@ -88,10 +88,20 @@ module.exports = class extends Generator {
                 name: this.props.name
             }
         );
+        // Boot environment configuration
+        this.fs.copy(
+            this.templatePath('_boot.env'),
+            this.destinationPath('.boot.env')
+        );
     }
 
     install() {
-        this.log("Run " + chalk.yellow("yarn install") + " to install required dependencies");
+        this.installDependencies({
+            npm : false,
+            bower : false,
+            yarn : true
+        });
+        this.log("-------------------------------------------------------------");
         this.log("Run " + chalk.yellow("yarn start") + " to start development server");
     }
 }

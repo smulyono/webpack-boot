@@ -14,14 +14,14 @@ require("dotenv").config({
 
 
 module.exports = {
-    PROJECT_DIR : resolvePath(process.env.boot_project_dir || "src/"),
-    BUILD_DIR   : resolvePath(process.env.boot_build_dir || "build/"),
-    MAIN_ENTRY   : resolvePath(process.env.boot_main_entry || "src/index.js"),
+    PROJECT_DIR : resolvePath(process.env.project_dir || "src/"),
+    BUILD_DIR   : resolvePath(process.env.build_dir || "build/"),
+    MAIN_ENTRY   : resolvePath(process.env.main_entry || "src/index.js"),
     NODE_MODULES : resolvePath("node_modules/"),
     PACKAGE_JSON : require("../package.json"),
     DEVELOPMENT_PROTOCOL : "http", // default for now
-    DEVELOPMENT_HOST : '0.0.0.0',
-    DEVELOPMENT_PORT : 3000,
+    DEVELOPMENT_HOST : '127.0.0.1',
+    DEVELOPMENT_PORT : process.env.port || 3000,
     DEVELOPMENT_SERVER_CONFIG : {
         hot : true,
         historyApiFallback : false,
