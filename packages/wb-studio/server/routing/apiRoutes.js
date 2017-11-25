@@ -9,5 +9,7 @@ router.route("/apps")
 router.route("/app")
     .post(projectController.handleCreate);
 
+router.route("/app/:id/status")
+    .get(projectController.handleStatus);
 
 export default router;

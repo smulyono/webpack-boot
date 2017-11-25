@@ -1,30 +1,73 @@
 import putil from '../utils/projectUtils';
 import log from '../logger';
 
-const createProjectTest = async () => {
-    let output = await putil.createProject("sanny");
-    console.log(JSON.stringify(output));
+const testProjectName = "testutil";
 
-    let path = output.path;
-    let cmd = putil.buildProject(path);
-    cmd.stdout.on("data", (data) => {
-        console.log(data.toString());
-    });
-    cmd.stdout.on("error", (data) => {
-        console.error(data.toString());
-    });
-    cmd.on("close", (code) => {
-        console.log("command exit with " + code);
-    });
+const createProjectTest = async () => {
+    try {
+        let output = await putil.createProject(testProjectName);
+        log.info(JSON.stringify(output));
+    
+        // let _id = output.id;
+        // let cmd = await putil.startProject(_id);
+        // cmd.stdout.pipe(process.stdout);
+        // cmd.stderr.pipe(process.stderr);
+        // cmd.on("close", (code) => {
+        //     log.info("command exit with " + code);
+        // });
+    } catch (err) {
+        log.error(err.message);
+    }
 
 };
-// putil.createProject("sanny")
-// .then((output) => {
-//     console.info("Created project : ", output);
-// })
-// .catch((output) => {
-//     console.error("Error ", output);
-// })
+
+const listProjectTest = async () => {
+    let output = await putil.listProject();
+    log.info("Listing project...");
+    log.info(JSON.stringify(output));
+}
+
+const buildProjectTest = async () => {
+    try {
+        let cmd = await putil.buildProject(testProjectName);
+        return new Promise( (resolve, reject) => {
+            cmd.stdout.pipe(process.stdout);
+            cmd.stderr.pipe(process.stderr);
+            cmd.on("error", (error) => {
+                log.error(error);
+                reject(error);
+            });
+            cmd.on("close", (code) => {
+                log.info("command exit with " + code);
+                if (code == 0) {
+                    resolve("ok");
+                } else {
+                    reject(code);
+                }
+            });    
+        });   
+    } catch (err) {
+        log.error(err);
+    }
+}
+
+const deleteProjectTest = async () => {
+    let output = await putil.deleteProject(testProjectName);
+    if (output != null) {
+        log.error(output);
+    } else {
+        log.info(`Project ${testProjectName} is deleted`);
+    }
+}
+
+const testSuite = async () => {
+    await createProjectTest();
+    await listProjectTest();
+    await buildProjectTest();
+    await deleteProjectTest();
+}
+
+testSuite();
 
 
-createProjectTest();
+

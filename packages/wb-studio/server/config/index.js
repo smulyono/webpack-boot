@@ -13,6 +13,7 @@ module.exports = {
     port : process.env.studio_port || 3000,
     mode : process.env.studio_mode || constants.PRODUCTION_MODE,
     workingdir : process.env.studio_workingdir || "/tmp",
+    dbPath : process.env.studio_db_path || "/tmp/_db",
 
     clientPublicPath : "/",
     clientBuildDir : path.resolve(__dirname, '../../build'),

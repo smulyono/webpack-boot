@@ -19,6 +19,10 @@ class ProjectController {
 
     handleList(req, res, next) {
     }
+
+    handleStatus(req, rest, next) {
+        // 
+    }
 }
 
 const projectControllerInstance = new ProjectController();

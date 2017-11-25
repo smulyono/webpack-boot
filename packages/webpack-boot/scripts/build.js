@@ -15,6 +15,7 @@ let compiler = webpack(configBuilder.getProductionConfig());
 compiler.run((error, stats) => {
     if (error) {
         console.error(chalk.red("Deployment build failed!", error));
+        process.exit(1);
     }
     console.log(chalk.green("[Build deployment - webpack]"), stats.toString({
         colors: true,
