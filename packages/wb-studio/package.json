@@ -4,7 +4,7 @@
   "main": "index.js",
   "author": "smulyono@me.com",
   "scripts": {
-    "start": "nodemon --inspect index.js",
+    "start": "node index.js",
     "build": "webpack-boot build"
   },
   "license": "MIT",

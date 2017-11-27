@@ -6,8 +6,6 @@ const testProjectName = "testutil";
 const createProjectTest = async () => {
     try {
         let output = await putil.createProject(testProjectName);
-        log.info(JSON.stringify(output));
-    
         // let _id = output.id;
         // let cmd = await putil.startProject(_id);
         // cmd.stdout.pipe(process.stdout);
@@ -27,9 +25,9 @@ const listProjectTest = async () => {
     log.info(JSON.stringify(output));
 }
 
-const buildProjectTest = async () => {
+const buildProjectTest = async (buildCmd) => {
     try {
-        let cmd = await putil.buildProject(testProjectName);
+        let cmd = await putil.buildProject(testProjectName, buildCmd);
         return new Promise( (resolve, reject) => {
             cmd.stdout.pipe(process.stdout);
             cmd.stderr.pipe(process.stderr);
@@ -63,6 +61,7 @@ const deleteProjectTest = async () => {
 const testSuite = async () => {
     await createProjectTest();
     await listProjectTest();
+    await buildProjectTest(["install"]);
     await buildProjectTest();
     await deleteProjectTest();
 }

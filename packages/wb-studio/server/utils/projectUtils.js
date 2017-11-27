@@ -6,6 +6,7 @@ import yeoman from 'yeoman-environment';
 import uuid from 'uuid';
 import spawn from 'cross-spawn';
 import db from './dbUtils';
+import { inherits } from 'util';
 
 /**
  * Creating project folder on studio working dir. After
@@ -47,7 +48,7 @@ const createProject = async (_name) => {
         const env = yeoman.createEnv();
         env.register(require.resolve("generator-webpack-boot"), "web:boot");
         // create promise
-        env.run("web:boot " + projectPath, {}, (err) => {
+        env.run("web:boot " + projectPath, {"skipInstall" : true}, (err) => {
             if (err) {
                 reject (err);
             } else {
@@ -85,11 +86,11 @@ const exportProject = (_id, name) => {
 
 }
 
-const buildProject = async (_id) => {
+const buildProject = async (_id, buildCmd = ["build"]) => {
     const projectOut = await db.get(_id);
     if (projectOut) {
         log.info("Building project at " +  projectOut.path);
-        return spawn("yarn" , ["build"], {
+        return spawn("yarn" , buildCmd, {
             cwd : projectOut.path,
             encoding : "utf8"
         });

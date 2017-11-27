@@ -27,7 +27,7 @@ if (config.mode === config.constants.DEVELOPMENT_MODE) {
     let compiler = wb.util.compileWebpack(wb.configBuilder.getDevelopmentConfig());
     
     App.use(webpackDevMiddleWare(compiler, {
-        noInfo : true,
+        noInfo : false,
         publicPath : config.clientPublicPath,
         stats : {
             assets : false,
