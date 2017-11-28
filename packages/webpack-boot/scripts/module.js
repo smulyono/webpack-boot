@@ -6,10 +6,12 @@
 const
     configBuilder = require("../config/configBuilder"),
     util = require("../config/util"),
+    merge = require("webpack-merge"),
     webpack = require("webpack");
 
 module.exports = {
     configBuilder,
     util,
-    webpack
+    webpack,
+    merge
 };

@@ -1,5 +1,7 @@
 const address = require("address"),
+    wmerge = require("webpack-merge"),
     webpack = require("webpack"),
+    webpackDevServer = require("webpack-dev-server"),
     constant = require("./constant"),
     chalk = require("chalk"),
     progressPlugin = require("webpack/lib/ProgressPlugin"),
@@ -167,5 +169,23 @@ module.exports = {
             isFirstBuild = false;
         });
         return compiled;
+    },
+    /**
+     * Utility to run webpack dev server and pass any additional dev server config
+     * e.g for proxy
+     */
+    runWebpackDevServer : (compiler, host, port, otherDevServerConfig = {}) => {
+        let devServerConfig = wmerge(otherDevServerConfig, constant.DEVELOPMENT_SERVER_CONFIG)
+        let server = new webpackDevServer(compiler, devServerConfig);
+        return new Promise( (resolve, reject) => {
+            server.listen(port, host, (err) => {
+                if (err) {
+                    console.error("Unable to start development server....");
+                    reject(err);
+                    process.exit(1);
+                }
+                resolve(true);
+            });
+        });
     }
 }
