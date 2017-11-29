@@ -16,7 +16,7 @@ module.exports = {
         modules: [constant.PROJECT_DIR, "node_modules"],
         extensions: ['.js', '.json', '.jsx']
     },
-    devtool : 'inline-source-map',
+    devtool : 'eval-source-map',
     // migration 1.x to 2.x, cannot omit the -loader
     resolveLoader: {
         moduleExtensions: ['-loader']

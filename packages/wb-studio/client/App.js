@@ -2,12 +2,15 @@
  * Main Application
  */
 import React from 'react';
+import ProjectList from './components/ProjectList';
 
 class App extends React.Component {
     render() {
-        return (
-            <h1>Application</h1>
-        )
+        return [
+            <ProjectList key="list"/>,
+            <main key="2">Main Project View</main>,
+            <footer key="3">Console</footer>
+        ]
     }
 }
 
