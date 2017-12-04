@@ -9,11 +9,10 @@ router.route("/apps")
 router.route("/app")
     .post(projectController.handleCreate);
 
-router.route("/app/:id/build")
-    .post(projectController.handleStatus);
-
-router.route("/app/:id/status")
-    .post(projectController.handleStatus);
+/** SSE Methods */
+router.route("/app/:id/run/:cmd")
+    .get(projectController.handleRunYarn);
+/** end of SSE Methods */
 
 router.route("/app/:id")
     .delete(projectController.handleDelete);

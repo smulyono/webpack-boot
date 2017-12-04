@@ -69,24 +69,11 @@ const createProject = async (_name) => {
     })
 }
 
-const startProject = async (_id) => {
-    const projectOut = await db.get(_id);
-    if (projectOut) {
-        return spawn("yarn", ["start"], {
-            cwd : projectOut.path,
-            encoding : "utf8"
-        });
-    } else {
-        console.error("No project to be started!");
-        return null;
-    }
-}
-
 const exportProject = (_id, name) => {
 
 }
 
-const buildProject = async (_id, buildCmd = ["build"]) => {
+const runYarn = async (_id, buildCmd = ["build"]) => {
     const projectOut = await db.get(_id);
     if (projectOut) {
         log.info("Building project at " +  projectOut.path);
@@ -141,11 +128,16 @@ const listProject =  () => {
     });
 }
 
+const getProject = async (_id) => {
+    let project = await db.get(_id);
+    return project;
+}
+
 module.exports = {
     createProject,
-    startProject,
     exportProject,
-    buildProject,
+    runYarn,
     deleteProject,
-    listProject
+    listProject,
+    getProject
 }

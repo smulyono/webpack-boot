@@ -69,9 +69,6 @@ connection.onmessage = (e) => {
 
 /* ==================== HANDLE MESSAGE ================*/
 function handleOkMessage(data) {
-    if (console && console.clear) {
-        console.clear();
-    }
     overlay.clear();
     reloadModule(data);
 }

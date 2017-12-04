@@ -27,7 +27,7 @@ const listProjectTest = async () => {
 
 const buildProjectTest = async (buildCmd) => {
     try {
-        let cmd = await putil.buildProject(testProjectName, buildCmd);
+        let cmd = await putil.runYarn(testProjectName, buildCmd);
         return new Promise( (resolve, reject) => {
             cmd.stdout.pipe(process.stdout);
             cmd.stderr.pipe(process.stderr);

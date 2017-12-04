@@ -11,54 +11,91 @@ class ProjectController {
         let resp = new ResponseBody();
         resp.success = false;
         resp.message = "noop";
-        // prepare SSE header
-        responseUtils.writeSSEHeader(res);
 
         if (body.name) {
             // create new project with name
-            responseUtils.writeData(res, "creating project...");
+            log.info(`creating project ${body.name}`);
             try {
                 let projectOut = await projectUtils.createProject(body.name);
                 if (projectOut && projectOut.id) {
-                    // let start doing yarn install
-                    let cmd  = await projectUtils.buildProject(projectOut.id, ["install"])
-                    cmd.stdout.on("data", (data) => {
-                        log.info(data.toString());
-                        responseUtils.writeData(res, data.toString());
-                    });
-                    cmd.on("close", (code) => {
-                        // when it is finish
-                        log.info("Command exit with " + code);
-                        if (code == 0) {
-                            resp.success = true;
-                        }
-                        resp.message = projectOut;
-                        responseUtils.writeEndData(res, JSON.stringify(resp));
-                    })
+                    resp.success = true;
+                    resp.message = `Project ${projectOut.id} is created`;
+                    resp.data = projectOut.id;
                 } else {
                     resp.message = "Project not created";
-                    responseUtils.writeEndData(res, JSON.stringify(resp));
                 }
             } catch (e) {
                 log.error(e);
                 resp.message = e.message;
-                responseUtils.writeEndData(res, JSON.stringify(resp));
             }
+        } else {
+            log.error("No project name is assigned...");
+            resp.message="No project name is assigned, please try again...";
         }
+        res.json(resp);
     }
 
     async handleList(req, res, next) {
         log.info("Listing all available projects ...");
-        let output = await projectUtils.listProject();
-
         let resp = new ResponseBody();
-        resp.success = false;
-        resp.message = output;
+        try {
+            let output = await projectUtils.listProject();
+            resp.success = true;
+            resp.data = output;
+        } catch(e) {
+            resp.success = false;
+            resp.message = `Unable to list any projects due to ${e}`;
+            resp.data = [];
+        }
+
         res.json(resp);
     }
 
-    handleStatus(req, rest, next) {
-        // 
+    async handleRunYarn(req, res, next) {
+        let runCmd = req.params.cmd || null,
+            projectId = req.params.id || null;
+
+        let resp = new ResponseBody();
+            resp.success = false;
+            resp.message = "noop";
+    
+        if (runCmd === null || projectId === null) {
+            return req.json(resp);
+        }
+
+        /** Start SSE  */
+        responseUtils.writeSSEHeader(res);
+        const projectOut = await projectUtils.getProject(projectId);
+        if (projectOut) {
+            log.info(`Project ${projectId} found at ${projectOut.path}`);
+        } else {
+            resp.message = `Unable to found project ${projectId}`;
+            responseUtils.writeSSEData(resp.message);
+            responseUtils.writeSSEEndData(JSON.stringify(resp));
+        }
+
+        // start preparing `supported` cmd
+        if (/[install|start|build]/.test(runCmd)) {
+            responseUtils.writeSSEData(res, `executing ${runCmd} on project`);
+            let cmd = await projectUtils.runYarn(projectId, [runCmd]);
+            cmd.stdout.on("data", (data) => {
+                log.info(data.toString());
+                responseUtils.writeSSEData(res, data.toString());
+            });
+            cmd.stdout.on("close", (code) => {
+                log.info(`command ${runCmd} exit with ${code}`);
+                if (code == 0) {
+                    resp.success = true;
+                }
+                resp.message = "done";
+                responseUtils.writeSSEEndData(res, JSON.stringify(resp));
+            });
+
+        } else {
+            resp.message = `Unable to execute unsupported ${runCmd}`;
+            responseUtils.writeSSEData(resp.message);
+            responseUtils.writeSSEEndData(JSON.stringify(resp));
+        }
     }
 
     async handleDelete(req, res, next) {

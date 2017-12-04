@@ -7,10 +7,13 @@ class ResponseUtils {
             "Connection" : "keep-alive"
         });
     }
-    writeData(res, output) {
+    writeSSEEvent(res, output) {
+        res.write(`event: ${output} \n`);
+    }
+    writeSSEData(res, output) {
         res.write(`data: ${output} \n\n`);
     }
-    writeEndData(res, output) {
+    writeSSEEndData(res, output) {
         res.end(`${output}`);
     }
 }
