@@ -17,5 +17,7 @@ router.route("/app/:id/run/:cmd")
 router.route("/app/:id")
     .delete(projectController.handleDelete);
 
+router.route("/showtime")
+    .get(projectController.showTime);
 
 export default router;

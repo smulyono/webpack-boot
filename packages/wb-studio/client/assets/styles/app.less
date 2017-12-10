@@ -43,10 +43,12 @@
     &__console {
         padding : @standardGap;
         height : 150px;
+        max-height : 150px;
+        overflow-y: auto;
         background-color : rgb(62, 61, 61);
         color : rgb(187, 240, 103);
         &--line {
-            border-bottom: solid 1px whitesmoke;
+            padding-top : @standardGap;
         }
     }
 }

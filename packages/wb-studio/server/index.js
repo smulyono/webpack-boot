@@ -3,6 +3,7 @@ import chalk from 'chalk';
 import log from './logger';
 import path from 'path';
 import morgan from 'morgan';
+import compression from 'compression';
 import config from './config';
 import ApiRoutes from './routing/apiRoutes';
 import devUtils from './utils/devUtils';
@@ -23,6 +24,7 @@ let fileLogStream = fs.createWriteStream(config.accessLogPath,
 App.use(morgan("combined", {
     stream : fileLogStream
 }));
+App.use(compression());
 App.use(Express.json());
 // Endpoint
 App.use("/api", ApiRoutes);

@@ -36,7 +36,7 @@ class ProjectListItem extends React.Component {
 
 
 ProjectListItem.propTypes = {
-    id : PropTypes.number,
+    id : PropTypes.string,
     project: PropTypes.object,
     callback : PropTypes.func
 }

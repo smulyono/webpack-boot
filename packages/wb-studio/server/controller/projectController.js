@@ -119,6 +119,22 @@ class ProjectController {
         }
         res.json(resp);
     }
+
+    showTime(req, res, next) {
+        responseUtils.writeSSEHeader(res);
+        responseUtils.writeSSEData(res, (new Date()).toLocaleTimeString());
+
+        let interval = setInterval( () => {
+            console.info('tick');
+            responseUtils.writeSSEData(res, (new Date()).toLocaleTimeString());
+        }, 1000);
+
+        res.on('close', () => {
+            clearInterval(interval);
+            console.log("Finish tick");
+        });
+
+    }
 }
 
 const projectControllerInstance = new ProjectController();
