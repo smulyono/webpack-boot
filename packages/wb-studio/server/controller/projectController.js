@@ -20,7 +20,10 @@ class ProjectController {
                 if (projectOut && projectOut.id) {
                     resp.success = true;
                     resp.message = `Project ${projectOut.id} is created`;
-                    resp.data = projectOut.id;
+                    resp.data = {
+                        id : projectOut.id,
+                        name : body.name
+                    };
                 } else {
                     resp.message = "Project not created";
                 }

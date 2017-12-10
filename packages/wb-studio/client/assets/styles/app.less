@@ -1,0 +1,52 @@
+@standardGap:5px;
+
+.aside_title {
+}
+
+.button__action {
+    &__refresh {
+        margin-left: (2 * @standardGap);
+        font-size : 0.7em;
+        color : blue;
+        text-decoration: underline;
+        cursor : pointer;
+    }
+    &--active {
+        background-color : cornflowerblue;
+        color : white;
+    }
+    &--inactive {
+        background-color : rgb(19, 46, 94);
+        color : rgb(187, 176, 176);
+        cursor: not-allowed;
+    }
+}
+
+.tab__content {
+    background-color : black;
+    margin : @standardGap;
+    padding :  @standardGap;
+    &__title {
+        display: flex;
+        align-content: left;
+        align-items: left;
+        margin-bottom:@standardGap;
+        button {
+            margin-right:@standardGap;
+        }
+    }
+    &__display {
+        border-top : solid 1px white;
+        font-size: 0.8em;
+
+    }
+    &__console {
+        padding : @standardGap;
+        height : 150px;
+        background-color : rgb(62, 61, 61);
+        color : rgb(187, 240, 103);
+        &--line {
+            border-bottom: solid 1px whitesmoke;
+        }
+    }
+}
