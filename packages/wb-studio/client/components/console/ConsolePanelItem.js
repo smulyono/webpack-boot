@@ -19,6 +19,9 @@ class ConsolePanelItem extends React.Component {
 
     installHandler = () => {
         const currentRunningState = this.state.installRunningState;
+
+        // initiate install SSE
+
         this.setState({
             installRunningState : !currentRunningState,
             startRunningState : !currentRunningState

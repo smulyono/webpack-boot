@@ -2,17 +2,12 @@ import putil from '../utils/projectUtils';
 import log from '../logger';
 
 const testProjectName = "testutil";
+let testId;
 
 const createProjectTest = async () => {
     try {
         let output = await putil.createProject(testProjectName);
-        // let _id = output.id;
-        // let cmd = await putil.startProject(_id);
-        // cmd.stdout.pipe(process.stdout);
-        // cmd.stderr.pipe(process.stderr);
-        // cmd.on("close", (code) => {
-        //     log.info("command exit with " + code);
-        // });
+        testId = output.id;
     } catch (err) {
         log.error(err.message);
     }
@@ -27,7 +22,7 @@ const listProjectTest = async () => {
 
 const buildProjectTest = async (buildCmd) => {
     try {
-        let cmd = await putil.runYarn(testProjectName, buildCmd);
+        let cmd = await putil.runYarn(testId, buildCmd);
         return new Promise( (resolve, reject) => {
             cmd.stdout.pipe(process.stdout);
             cmd.stderr.pipe(process.stderr);
@@ -50,11 +45,11 @@ const buildProjectTest = async (buildCmd) => {
 }
 
 const deleteProjectTest = async () => {
-    let output = await putil.deleteProject(testProjectName);
+    let output = await putil.deleteProject(testId);
     if (output != null) {
         log.error(output);
     } else {
-        log.info(`Project ${testProjectName} is deleted`);
+        log.info(`Project ${testId} : ${testProjectName} is deleted`);
     }
 }
 

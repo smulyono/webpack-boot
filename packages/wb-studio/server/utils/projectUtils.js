@@ -53,11 +53,13 @@ const createProject = async (_name) => {
                 reject (err);
             } else {
                 // once webpack is done
+                const id = uuid.v4();
                 const projectOut = {
-                    "id" : name,
+                    "id" : id,
+                    "name" : name,
                     "path" : projectPath
                 };
-                db.put(name, projectOut, (err) => {
+                db.put(id, projectOut, (err) => {
                     if (err) {
                         reject(err);
                     } else {
