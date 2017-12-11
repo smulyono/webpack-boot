@@ -15,20 +15,32 @@ class ProjectListItem extends React.Component {
 
     deleteProject = async () => {
         await apiRequest.deleteProject(this.state.id);
-        this.state.callback();
+        this.state.callback('delete');
     }
 
     render() {
         const {id, project} = this.state;
+        const {isActive} = this.props;
         return (
             <li key={id}>
-                {id} : {project.name} 
-                <span className="button__action__refresh"
+                <span className="button__action__cancel"
                     onClick={() => {
                         this.deleteProject();
                     }}
                     >X
                 </span>
+                <div className="project_title">
+                    {project.name} 
+                </div>
+                <button 
+                    className={!isActive ?
+                        "button__action--active button_right" :
+                        "button__action--inactive button_right"}                     
+                    onClick={() => {
+                        this.state.callback('activate', id);
+                    }}
+                    > &gt;
+                </button>
             </li>
         )    
     }
@@ -38,6 +50,7 @@ class ProjectListItem extends React.Component {
 ProjectListItem.propTypes = {
     id : PropTypes.string,
     project: PropTypes.object,
+    isActive : PropTypes.bool,
     callback : PropTypes.func
 }
 

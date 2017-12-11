@@ -61,6 +61,7 @@ class ConsolePanelItem extends React.Component {
         return () => {
             this.toggleButtonState();
             let startUrl = `${constants.BASE_URL}${constants.PROJECT_URL}/${this.state.projectId}/run/${actionName}`;
+            // let startUrl = `${constants.BASE_URL}/showtime`;
             this.handleSSEmessage(startUrl);
         }
     }

@@ -8,7 +8,8 @@ import './assets/styles/app.less';
 
 class App extends React.Component {
     state = {
-        consoleTabs : []
+        consoleTabs : [],
+        selectedTab : undefined
     }
 
     renderConsoleMessage = (currentTabs, message) => {
@@ -39,14 +40,24 @@ class App extends React.Component {
         });
     }
 
+    handleSelectProject = (projectId) => {
+        this.setState({
+            selectedTab : projectId
+        })
+    }
+
     render() {
-        return [
-            <ProjectList key="list" 
-                onMessage={this.handleConsoleMessage}/>,
-            <main key="2">Main Project View</main>,
-            <ConsolePanel key="console"
-                consoleTabs={this.state.consoleTabs}/>
-        ]
+        return (
+            <div className="wbstudio__container">
+                <ProjectList key="list" 
+                    onMessage={this.handleConsoleMessage}
+                    onSelectProject={this.handleSelectProject}/>
+                <ConsolePanel key="console"
+                    consoleTabs={this.state.consoleTabs}
+                    selectedTab={this.state.selectedTab}/>
+            </div>
+        )
+        
     }
 }
 

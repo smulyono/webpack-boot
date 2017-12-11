@@ -1,36 +1,197 @@
 @standardGap:5px;
+@consoleButtonHeight: 20px;
 
-.aside_title {
+* {
+    box-sizing:border-box;
+}
+#root {
+    position:absolute;
+    left:0;top:0;bottom:0;right:0;
+}
+
+.right_float {
+    float:right;
+}
+
+.wbstudio__container {
+    width : inherit;
+    height: 100%;
+    background-color : black;
+    font-size : 14px;
+    color : whitesmoke;
+    display: flex;
+    flex-wrap: nowrap;
+    align-items: stretch;
+    align-content: stretch;
+    aside {
+        min-width : 190px;
+        overflow-y: auto;
+        border-right: solid 2px #ececec;
+        .aside_title {
+            display:flex;
+            justify-content: space-between;
+            span {
+                flex-grow: 1;
+                box-sizing: border-box;
+                border-bottom: solid 2px transparent;
+                margin-left : 1px;
+                padding : @standardGap;
+                &:nth-child(1) {
+                    margin-left: 0;
+                }
+                &:hover {
+                    border-bottom: solid 2px red;
+                }
+            }
+        }
+        .aside_top {
+            z-index : 1;
+            position : absolute;
+            top:0;
+            left:0;right:0;bottom:0;
+            padding-top : 20%;
+            padding-left: 40%;
+            padding-right:20%;
+
+            background-color: rgba(75, 74, 73, 0.869);
+
+            label {
+                font-weight: 700;
+                color: whitesmoke;
+            }
+            input[type=text] {
+                font-size : 1.5em;
+                border : none;
+                background-color : transparent;
+                border-bottom: solid 1px white;
+                width : 100%;
+                color : white;
+                outline : none;
+                outline-width: 0;
+                padding : @standardGap;
+            }
+
+            &__buttons {
+                margin-top : 2*@standardGap;
+                display: flex;
+                align-content: flex-end;
+                font-size : 1.3em;
+            }
+        }
+    }
+    .consolePanel {
+        width : 100%;
+        background-color : rgba(75, 74, 73, 0.869);
+        overflow-y: auto;
+        position:relative;
+
+
+        .consolePanel__tab {
+            transition : all 0.7s;
+            transform-style: preserve-3d;
+
+            position:absolute;
+            top:0;left:0;right:0;bottom:0;
+            width: 100%;
+            z-index : 1;
+            &--hide {
+                position:absolute;
+                top:0;left:0;right:0;bottom:0;
+                transform: rotateY(-180deg) scale(0.5, 0.2);
+                z-index:0;
+                backface-visibility: hidden;
+            }
+        }
+    }
 }
 
 .button__action {
+    &__topmenu {
+        padding : @standardGap / 2;
+        background-color : gainsboro;
+        color : black;
+        font-size : 1.2em;
+        cursor : pointer;
+        outline-style: none;
+        outline-width: 0;        
+       
+    }
+    &__cancel {
+        background-color : transparent;
+        color : lightblue;
+        border : none;
+        text-decoration: underline;
+        cursor : pointer;
+        outline-style: none;
+        outline-width: 0;        
+    }
     &__refresh {
         margin-left: (2 * @standardGap);
         font-size : 0.7em;
-        color : blue;
+        color : lightblue;
         text-decoration: underline;
         cursor : pointer;
+        outline-style: none;
+        outline-width: 0;
     }
     &--active {
         background-color : cornflowerblue;
         color : white;
+        outline-style: none;
+        outline-width: 0;
+        cursor : pointer;
     }
     &--inactive {
         background-color : rgb(19, 46, 94);
         color : rgb(187, 176, 176);
+        outline-style: none;
+        outline-width: 0;
         cursor: not-allowed;
     }
 }
 
+ul.projectlists {
+    list-style: none;
+    padding-left:0;
+    li {
+        padding : @standardGap;
+
+        margin-bottom: @standardGap;
+        border-bottom : solid 1px gray;
+        .project_title {
+            max-width : 100px;
+            display:inline-block;
+            vertical-align: top;
+            margin-left : @standardGap;
+        }
+        .button_right {
+            float:right;
+        }
+        .button__action__cancel {
+            text-decoration: none;
+            border-radius : 100%;
+            border : solid 1px white;
+            padding : @standardGap / 2;
+            font-size : 0.8em;
+        }
+    }
+}
+
+// each console panel tab content
 .tab__content {
     background-color : black;
-    margin : @standardGap;
     padding :  @standardGap;
+    height : 100%;
+    display: flex;
+    flex-direction: column;
+    align-items:  stretch;
+    align-content: stretch;
     &__title {
         display: flex;
         align-content: left;
         align-items: left;
         margin-bottom:@standardGap;
+        min-height: @consoleButtonHeight;
         button {
             margin-right:@standardGap;
         }
@@ -38,13 +199,13 @@
     &__display {
         border-top : solid 1px white;
         font-size: 0.8em;
-
+        flex-grow : 2;
+        overflow-y: auto;
+        max-height: calc(~"100vh - "@consoleButtonHeight);
     }
     &__console {
         padding : @standardGap;
-        height : 150px;
-        max-height : 150px;
-        overflow-y: auto;
+        height : inherit;
         background-color : rgb(62, 61, 61);
         color : rgb(187, 240, 103);
         &--line {

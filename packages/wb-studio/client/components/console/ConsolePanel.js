@@ -4,12 +4,14 @@ import ConsolePanelItem from './ConsolePanelItem';
 
 class ConsolePanel extends React.Component {
     render() {
-        const {consoleTabs} = this.props;
+        const {consoleTabs, selectedTab} = this.props;
         return (
             <div className="consolePanel">
                 { consoleTabs.map ((consoleTab) => {
                     return (
-                        <div className="consolePanel__tab"
+                        <div className={selectedTab == consoleTab.id ? 
+                                "consolePanel__tab" :
+                                "consolePanel__tab--hide" }
                             key={consoleTab.id}>
                             <ConsolePanelItem
                                 projectId={consoleTab.id} 
@@ -23,7 +25,8 @@ class ConsolePanel extends React.Component {
 }
 
 ConsolePanel.propTypes = {
-    consoleTabs : PropTypes.array
+    consoleTabs : PropTypes.array,
+    selectedTab : PropTypes.string
 }
 
 export default ConsolePanel;
