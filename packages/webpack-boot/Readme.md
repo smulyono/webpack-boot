@@ -31,3 +31,6 @@ boot_main_entry=<Path to main entry js file>
 * Run `$ yarn link webpack-boot` to install deps
 * Run `$ yarn start`
 
+[TODO]
+
+* Build configuration file

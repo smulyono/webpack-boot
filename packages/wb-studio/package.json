@@ -3,6 +3,7 @@
   "version": "0.0.1",
   "main": "index.js",
   "author": "smulyono@me.com",
+  "private": true,
   "scripts": {
     "start": "node index.js",
     "build": "webpack-boot build"
