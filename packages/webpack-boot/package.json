@@ -1,6 +1,6 @@
 {
     "name": "webpack-boot",
-    "version": "0.0.13",
+    "version": "0.0.14",
     "description": "Build simple application using webpack",
     "repository": {
         "type": "git",
