@@ -37,6 +37,8 @@ module.exports = {
             chunks : false
         }       
     },
+    /** specific loader properties */
+    FILE_LOADER_REGEX : process.env.file_loader_regex ? new RegExp(process.env.file_loader_regex) : /\.(png|jpg|jpeg|gif|wav)$/,    
     getPublichPath : function() {
         // 1. get from NODE_ENV.homepage
 

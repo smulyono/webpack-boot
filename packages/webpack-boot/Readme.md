@@ -14,9 +14,10 @@ The key goal for webpack boot is to automate the configuration of webpack based 
 * ESLint for React and ES6
 * Environment specific configuration, will look for __.boot.env__ file
 ```
-boot_project_dir=<Project location relative to root folder>
-boot_build_dir=<Build folder location>
-boot_main_entry=<Path to main entry js file>
+port=<Port for development server>
+project_dir=<Project location relative to root folder>
+build_dir=<Build folder location>
+main_entry=<Path to main entry js file>
 
 ```
 [ More .. ]
@@ -31,6 +32,3 @@ boot_main_entry=<Path to main entry js file>
 * Run `$ yarn link webpack-boot` to install deps
 * Run `$ yarn start`
 
-[TODO]
-
-* Build configuration file

@@ -65,7 +65,7 @@ module.exports = {
                     }
                 },
                 include: constant.PROJECT_DIR
-            }
+            }            
         ]
     },
     plugins: [

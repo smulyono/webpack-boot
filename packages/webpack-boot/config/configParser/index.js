@@ -4,7 +4,8 @@ const chalk = require("chalk"),
     lessLoader = require("./loader/less"),
 
     eslintReactLoader = require("./loader/eslint_react"),
-    eslintStandard = require("./loader/eslint_standard")
+    eslintStandard = require("./loader/eslint_standard"),
+    fileLoader = require("./loader/file_loader")
     ;
 
 module.exports = function(configuration, isProduction) {
@@ -21,6 +22,9 @@ module.exports = function(configuration, isProduction) {
             console.log("    " + chalk.cyan("`google` eslint config is enabled by default"));
         }
     });
+
+    // standard file loader
+    configuration = moduleDetector.parseAndDetect(fileLoader(isProduction), configuration);
 
     // console.log(util.inspect(configuration, false, null, true));
     return configuration;
