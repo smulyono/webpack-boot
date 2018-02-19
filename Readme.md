@@ -20,9 +20,14 @@ $ yarn install
 $ lerna bootstrap
 ```
 
-## Publish changes
+## show all projces
+``` bash
+$ lerna ls 
+```
+
+## Publish changes 
 
 ```bash
-$ yarn install 
-$ yarn deploy
+$ lerna updated
+$ lerna 
 ```
