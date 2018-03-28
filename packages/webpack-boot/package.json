@@ -18,7 +18,7 @@
         "babel-core": "^6.24.1",
         "babel-eslint": "^7.2.3",
         "babel-loader": "^7.0.0",
-        "babel-preset-env": "^1.5.1",
+        "babel-preset-env": "^1.6.1",
         "babel-preset-react": "^6.24.1",
         "chalk": "^1.1.3",
         "cross-spawn": "^5.1.0",
@@ -44,10 +44,6 @@
         "webpack": "~3.5.4",
         "webpack-dev-server": "~2.7.1",
         "webpack-merge": "^4.1.0"
-    },
-    "babel": {},
-    "eslintConfig": {
-        "extends": "react-app"
     },
     "bin": "./bin/wpboot.js",
     "main": "./scripts/module.js"

@@ -12,7 +12,12 @@ module.exports = {
                         loader: require.resolve('eslint-loader'),
                         options: {
                             failOnError: true,
-                            baseConfig : require.resolve('eslint-config-react-app'),
+                            baseConfig : {
+                                extends : [
+                                    'react-app',
+                                    'plugin:react/recommended'
+                                ]
+                            },
                             useEslintrc : true
                         },
                     },

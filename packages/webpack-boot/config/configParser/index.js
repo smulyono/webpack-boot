@@ -17,6 +17,7 @@ module.exports = function(configuration, isProduction) {
         if (status) {
             // React is loaded
             console.log("    " + chalk.cyan("React detected, `react-app` eslint config is enabled by default"));
+            console.log("    " + chalk.cyan("  ----> manually add `react` into your .babelrc files"));
         } else {
             configuration = moduleDetector.parseAndDetect(eslintStandard(isProduction), configuration);        
             console.log("    " + chalk.cyan("`google` eslint config is enabled by default"));

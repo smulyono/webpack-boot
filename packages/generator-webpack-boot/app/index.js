@@ -93,6 +93,14 @@ module.exports = class extends Generator {
             this.templatePath('_boot.env'),
             this.destinationPath('.boot.env')
         );
+        // Readme file
+        this.fs.copyTpl(
+            this.templatePath('_Readme.md'),
+            this.destinationPath('Readme.md'),
+            {
+                name : this.props.name
+            }
+        );
     }
 
     install() {
