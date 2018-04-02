@@ -1,7 +1,7 @@
-'use strict';
-var Generator = require('yeoman-generator');
-var chalk = require('chalk');
-var yosay = require('yosay');
+"use strict";
+var Generator = require("yeoman-generator");
+var chalk = require("chalk");
+var yosay = require("yosay");
 var path = require("path");
 
 module.exports = class extends Generator {
@@ -10,9 +10,9 @@ module.exports = class extends Generator {
         // check for arguments, this is shorthand for
         // creating project on certain root directory
         this.argument("name", {
-            type : String,
-            required : false,
-            desc : "project full directory path"
+            type: String,
+            required: false,
+            desc: "project full directory path"
         });
     }
 
@@ -23,34 +23,37 @@ module.exports = class extends Generator {
             var basename = path.basename(this.options.name);
             this.props.name = basename;
             this.destinationRoot(this.options.name);
-            return ;
+            return;
         }
 
         // Have Yeoman greet the user.
-        this.log(yosay(
-            'Welcome to the excellent '
-            + chalk.red('WebpackBoot')
-            + ' generator!'
-        ));
+        this.log(
+            yosay(
+                "Welcome to the excellent " +
+                    chalk.red("WebpackBoot") +
+                    " generator!"
+            )
+        );
 
-        var prompts = [{
-            type: 'input',
-            name: 'name',
-            message: 'Project name : '
-        }];
+        var prompts = [
+            {
+                type: "input",
+                name: "name",
+                message: "Project name : "
+            }
+        ];
 
-        return this.prompt(prompts)
-            .then((props) => {
-                this.props = props;
-                // To access props later use this.props.someOption;
-                this.destinationRoot(this.props.name);
+        return this.prompt(prompts).then(props => {
+            this.props = props;
+            // To access props later use this.props.someOption;
+            this.destinationRoot(this.props.name);
         });
     }
 
     copyAppStructures() {
         this.fs.copyTpl(
-            this.templatePath('_package.json'),
-            this.destinationPath('package.json'),
+            this.templatePath("_package.json"),
+            this.destinationPath("package.json"),
             {
                 name: this.props.name
             }
@@ -59,57 +62,70 @@ module.exports = class extends Generator {
 
     copyProjectfiles() {
         this.fs.copy(
-            this.templatePath('editorconfig'),
-            this.destinationPath('.editorconfig')
+            this.templatePath("editorconfig"),
+            this.destinationPath(".editorconfig")
         );
         this.fs.copy(
-            this.templatePath('babelrc'),
-            this.destinationPath('.babelrc')
+            this.templatePath("babelrc"),
+            this.destinationPath(".babelrc")
+        );
+        this.fs.copy(
+            this.templatePath("_eslintrc"),
+            this.destinationPath(".eslintrc")
         );
         // default landing page
         this.fs.copyTpl(
-            this.templatePath('_index.html'),
-            this.destinationPath('src/assets/pages/index.html'),
+            this.templatePath("_index.html"),
+            this.destinationPath("src/assets/pages/index.html"),
             {
                 name: this.props.name
             }
         );
         // default stylesheet
         this.fs.copyTpl(
-            this.templatePath('_index.css'),
-            this.destinationPath('src/assets/styles/index.css'),
+            this.templatePath("_index.css"),
+            this.destinationPath("src/assets/styles/index.css"),
             {}
         );
         // Default application page
         this.fs.copyTpl(
-            this.templatePath('_index.js'),
-            this.destinationPath('src/index.js'),
+            this.templatePath("_index.js"),
+            this.destinationPath("src/index.js"),
             {
                 name: this.props.name
             }
         );
         // Boot environment configuration
         this.fs.copy(
-            this.templatePath('_boot.env'),
-            this.destinationPath('.boot.env')
+            this.templatePath("_boot.env"),
+            this.destinationPath(".boot.env")
         );
         // Readme file
         this.fs.copyTpl(
-            this.templatePath('_Readme.md'),
-            this.destinationPath('Readme.md'),
+            this.templatePath("_Readme.md"),
+            this.destinationPath("Readme.md"),
             {
-                name : this.props.name
+                name: this.props.name
             }
         );
     }
 
     install() {
         this.installDependencies({
-            npm : false,
-            bower : false,
-            yarn : true
+            npm: false,
+            bower: false,
+            yarn: true
         });
-        this.log("-------------------------------------------------------------");
-        this.log("Run " + chalk.yellow("yarn start") + " to start development server");
+        this.log(
+            "-------------------------------------------------------------" +
+                "\n" +
+                "  prettier configuration is available in package.json   " +
+                "\n" +
+                "-------------------------------------------------------------" +
+                "\n"
+        );
+        this.log(
+            "Run " + chalk.yellow("yarn start") + " to start development server"
+        );
     }
-}
+};

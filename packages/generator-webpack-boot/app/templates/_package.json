@@ -1,14 +1,13 @@
 {
-  "name": "<%= name %>",
-  "version": "0.0.1",
-  "scripts" : {
-    "start" : "webpack-boot start",
-    "build" : "webpack-boot build"
-  },
-  "dependencies": {
-
-  },
-  "devDependencies" : {
-    "webpack-boot": "~0.0.16"
-  }
+    "name": "<%= name %>",
+    "version": "0.0.1",
+    "scripts": {
+        "start": "webpack-boot start",
+        "build": "webpack-boot build"
+    },
+    "dependencies": {},
+    "devDependencies": {
+        "webpack-boot": "~0.0.16"
+    },
+    "prettier": {}
 }

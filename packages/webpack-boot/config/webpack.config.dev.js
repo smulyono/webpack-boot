@@ -1,5 +1,5 @@
 const constant = require("./constant"),
-    webpack = require('webpack'),
+    webpack = require("webpack"),
     HtmlWebpackPlugin = require("html-webpack-plugin");
 
 module.exports = {
@@ -9,17 +9,18 @@ module.exports = {
         filename: "assets/js/[name]-bundle.js"
     },
     entry: [
-        require.resolve('./devserver/webpackHotClient'),
+        require.resolve("babel-polyfill"),
+        require.resolve("./devserver/webpackHotClient"),
         constant.MAIN_ENTRY
     ],
     resolve: {
         modules: [constant.PROJECT_DIR, "node_modules"],
-        extensions: ['.js', '.json', '.jsx']
+        extensions: [".js", ".json", ".jsx"]
     },
-    devtool : 'eval-source-map',
+    devtool: "eval-source-map",
     // migration 1.x to 2.x, cannot omit the -loader
     resolveLoader: {
-        moduleExtensions: ['-loader']
+        moduleExtensions: ["-loader"]
     },
     module: {
         strictExportPresence: true,
@@ -28,44 +29,44 @@ module.exports = {
             {
                 test: /\.css$/,
                 use: [
-                    require.resolve('style-loader'),
+                    require.resolve("style-loader"),
                     {
-                        loader: require.resolve('css-loader'),
+                        loader: require.resolve("css-loader"),
                         options: {
-                            importLoaders: 1,
+                            importLoaders: 1
                         }
                     },
                     {
-                        loader: require.resolve('postcss-loader'),
+                        loader: require.resolve("postcss-loader"),
                         options: {
+                            ident: "postcss",
                             plugins: () => [
-                                require('postcss-flexbugs-fixes'),
-                                require('autoprefixer')({
+                                require("postcss-flexbugs-fixes"),
+                                require("autoprefixer")({
                                     browsers: [
-                                        '>1%',
-                                        'last 4 versions',
-                                        'Firefox ESR',
-                                        'not ie < 9', // React doesn't support IE8 anyway
+                                        ">1%",
+                                        "last 4 versions",
+                                        "Firefox ESR",
+                                        "not ie < 9" // React doesn't support IE8 anyway
                                     ],
-                                    flexbox: 'no-2009',
+                                    flexbox: "no-2009"
                                 })
-                            ],
-                        },
+                            ]
+                        }
                     }
-                ],
-                include: constant.PROJECT_DIR
+                ]
             },
             // babel + react
             {
                 test: /\.(js|jsx)$/,
                 use: {
-                    loader: require.resolve('babel-loader'),
+                    loader: require.resolve("babel-loader"),
                     options: {
                         cacheDirectory: true
                     }
                 },
                 include: constant.PROJECT_DIR
-            }            
+            }
         ]
     },
     plugins: [
@@ -80,13 +81,16 @@ module.exports = {
                 removeComments: true
             }
         }),
+        new webpack.DefinePlugin({
+            NODE_ENV: process.env.NODE_ENV || "development"
+        }),
         new webpack.HotModuleReplacementPlugin(),
-         // show module names instead of numbers in webpack stats
+        // show module names instead of numbers in webpack stats
         new webpack.NamedModulesPlugin(),
         // don't spit out any errors in compiled assets
         new webpack.NoEmitOnErrorsPlugin()
     ],
     performance: {
-        hints: false,
+        hints: false
     }
 };

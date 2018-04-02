@@ -9,10 +9,8 @@ module.exports = {
                 use: [
                     {
                         loader: moduleDetector.resolveModule('file-loader'),
-                        options: {},
                     },
-                ],
-                include: constant.PROJECT_DIR
+                ]
             }            
         ]
     }
