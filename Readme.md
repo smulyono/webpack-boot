@@ -1,6 +1,6 @@
 # Webpack-boot Project
 
-Multi package project using [lerna](https://lernajs.io/). 
+Multi package project using [lerna](https://lernajs.io/).
 
 ## Getting started
 
@@ -10,24 +10,26 @@ $ npm install -g yarn lerna
 
 ## Current Packages
 
-* Yeoman Generator for webpack-boot
+*   Yeoman Generator for webpack-boot
 
-* Webpack boot project
+*   Webpack boot project
 
 ## Starting development
+
 ```bash
 $ yarn install
 $ lerna bootstrap
 ```
 
 ## show all projces
-``` bash
-$ lerna ls 
+
+```bash
+$ lerna ls
 ```
 
-## Publish changes 
+## Publish changes
 
 ```bash
 $ lerna updated
-$ lerna 
+$ yarn deploy
 ```
