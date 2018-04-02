@@ -38,7 +38,10 @@ module.exports = {
         }       
     },
     /** specific loader properties */
-    FILE_LOADER_REGEX : process.env.file_loader_regex ? new RegExp(process.env.file_loader_regex) : /\.(png|jpg|jpeg|gif|wav)$/,    
+    FILE_LOADER_REGEX : process.env.file_loader_regex ? new RegExp(process.env.file_loader_regex) : /\.(png|jpg|jpeg|gif|wav)$/,
+    URL_LOADER_REGEX : process.env.url_loader_regex ? new RegExp(process.env.url_loader_regex) : /\.(woff|otf|png)$/,    
+    URL_LOADER_LIMIT : process.env.url_loader_limit ? process.env.url_loader_limit : 1000,
+    URL_LOADER_MIMETYPE : process.env.url_loader_mimetype ? process.env.url_loader_mimetype : '',
     getPublichPath : function() {
         // 1. get from NODE_ENV.homepage
 

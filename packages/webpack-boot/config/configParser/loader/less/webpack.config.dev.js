@@ -17,6 +17,7 @@ module.exports = {
                     {
                         loader: require.resolve('postcss-loader'),
                         options: {
+                            ident : "postcss",
                             plugins: () => [
                                 require('postcss-flexbugs-fixes'),
                                 require('autoprefixer')({
