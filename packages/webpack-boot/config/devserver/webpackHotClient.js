@@ -69,11 +69,12 @@ connection.onmessage = e => {
 
 /* ==================== HANDLE MESSAGE ================*/
 function handleOkMessage(data) {
-    if (console && console.clear) {
-        console.clear();
-    }
+    // if (console && console.clear) {
+    //     console.clear();
+    // }
     overlay.clear();
     reloadModule(data);
+    console.info(`[webpackHotClient] compile OK...`);
 }
 
 function handleWarningMessage(data) {
@@ -86,18 +87,22 @@ function handleWarningMessage(data) {
     overlay.clear();
     reloadModule(data);
     console.info(
-        `[webpackHotClient] ${data.length} warnings while compiling ...`
+        `[webpackHotClient] ${
+            data ? data.length : 0
+        } warnings while compiling ...`
     );
 }
 
 function handleErrorsMessage(data) {
-    if (console && console.clear) {
-        console.clear();
-    }
+    // if (console && console.clear) {
+    //     console.clear();
+    // }
 
     // show errors in console
     console.error(
-        `[webpackHotClient] ${data.length} errors while compiling ...`
+        `[webpackHotClient] ${
+            data ? data.length : 0
+        } errors while compiling ...`
     );
     data.map(error => {
         let strippedError = stripAnsi(error);

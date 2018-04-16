@@ -85,7 +85,9 @@ module.exports = {
             }
         }),
         new webpack.DefinePlugin({
-            NODE_ENV: process.env.NODE_ENV || "development"
+            "process.env": {
+                NODE_ENV: JSON.stringify("production")
+            }
         }),
         // show module names instead of numbers in webpack stats
         new webpack.NamedModulesPlugin(),
