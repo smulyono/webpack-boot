@@ -29,6 +29,8 @@ $ lerna ls
 
 ## Publish changes
 
+Merge feature branch and do this from develop / release branch.
+
 ```bash
 $ lerna updated
 $ yarn deploy
