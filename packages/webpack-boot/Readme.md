@@ -11,6 +11,10 @@ The key goal for webpack boot is to automate the configuration of webpack based 
 * Webpack 2.x support configuration
     * Development server with webpack as `react-scripts` have supported
 * Less support
+* Support for webpack loaders with zero configuration
+    * file-loader
+    * url-loader
+* Support for using additional webpack configuration 
 * ESLint for React and ES6
 * Environment specific configuration, will look for __.boot.env__ file
 ```

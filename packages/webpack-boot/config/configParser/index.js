@@ -6,7 +6,9 @@ const chalk = require("chalk"),
     eslintReactLoader = require("./loader/eslint_react"),
     eslintStandard = require("./loader/eslint_standard"),
     fileLoader = require("./loader/file_loader"),
-    urlLoader = require("./loader/url_loader")
+    urlLoader = require("./loader/url_loader"),
+
+    customConfigLoader = require("./loader/custom_config_loader")
     ;
 
 module.exports = function(configuration, isProduction) {
@@ -30,6 +32,9 @@ module.exports = function(configuration, isProduction) {
 
     // standard file loader
     configuration = moduleDetector.parseAndDetect(fileLoader(isProduction), configuration);
+
+    // lastly put all custom config loader
+    configuration = moduleDetector.parseAndDetect(customConfigLoader(isProduction), configuration);
 
     // -- DEBUGGING INFO --
     console.debug(util.inspect(configuration, false, null, true));

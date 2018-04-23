@@ -17,6 +17,7 @@ module.exports = {
     PROJECT_DIR : resolvePath(process.env.project_dir || "src/"),
     BUILD_DIR   : resolvePath(process.env.build_dir || "build/"),
     MAIN_ENTRY   : resolvePath(process.env.main_entry || "src/index.js"),
+    CUSTOM_CONFIG_DIR : resolvePath(process.env.custom_config_dir || "config/"),
     NODE_MODULES : resolvePath("node_modules/"),
     PACKAGE_JSON : require("../package.json"),
     DEVELOPMENT_PROTOCOL : "http", // default for now
@@ -49,5 +50,6 @@ module.exports = {
 
         // 3. Fallback to '';
         return '';
-    }
+    },
+    resolvePath
 };

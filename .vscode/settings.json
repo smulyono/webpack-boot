@@ -4,5 +4,4 @@
     "editor.detectIndentation": false,
     "editor.insertSpaces": true,
     "eslint.enable": true,
-    "jshint.enable": false
 }
