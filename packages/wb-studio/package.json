@@ -1,6 +1,6 @@
 {
   "name": "webapack-boot-studio",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "main": "index.js",
   "author": "smulyono@me.com",
   "private": true,
@@ -15,7 +15,7 @@
     "dotenv": "^4.0.0",
     "express": "^4.16.2",
     "fs-extra": "^4.0.2",
-    "generator-webpack-boot": "^0.1.8",
+    "generator-webpack-boot": "^0.1.9",
     "level": "^2.0.1",
     "morgan": "^1.9.0",
     "prop-types": "^15.6.0",
